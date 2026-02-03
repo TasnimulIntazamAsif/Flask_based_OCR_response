@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask API Example</title>
+</head>
+<body>
+
+    <h1>Flask API Example</h1>
+    <p id="message">Loading...</p>
+
+    <button onclick="getGreeting()">Get Greeting</button>
+
+    <script>
+        // Function to fetch data from the Flask API
+        function getGreeting() {
+            fetch('http://127.0.0.1:5000/hello')
+                .then(response => response.text())  // expecting plain text response
+                .then(data => {
+                    // Update the message on the page with the response
+                    document.getElementById('message').textContent = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('message').textContent = 'Failed to load greeting';
+                });
+        }
+    </script>
+
+</body>
+</html>
